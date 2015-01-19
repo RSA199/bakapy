@@ -135,7 +135,7 @@ func RunJob(jobName string, jConfig *JobConfig, gConfig *Config, storage *Storag
 	logger := logging.MustGetLogger("bakapy.job")
 	executor := jConfig.executor
 	if executor == nil {
-		executor = NewBashExecutor(jConfig.Args, jConfig.Host, jConfig.Port, jConfig.Sudo)
+		executor = NewBashExecutor(jConfig.Args, jConfig.Host, jConfig.Port, jConfig.Sudo, gConfig.CommandDir, &jConfig.RemoteFilters)
 	}
 	job := NewJob(
 		jobName, jConfig, gConfig.Listen,
